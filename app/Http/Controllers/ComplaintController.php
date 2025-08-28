@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Complaint;
 use App\Models\Category;
+use App\Models\Complaint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
 {
@@ -15,7 +16,7 @@ class ComplaintController extends Controller
 
     public function index()
     {
-        $complaints = Complaint::with('category')->latest()->get();
+        $complaints = Complaint::with('category')->latest()->paginate(10);
         return view('complaints.index', compact('complaints'));
     }
 
@@ -37,7 +38,7 @@ class ComplaintController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'description' => 'required|string',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
 
         $data = $request->all();
@@ -76,7 +77,7 @@ class ComplaintController extends Controller
             'location' => 'required|string|max:255',
             'date' => 'required|date',
             'description' => 'required|string',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
 
         $data = $request->all();
@@ -92,7 +93,12 @@ class ComplaintController extends Controller
 
     public function destroy(Complaint $complaint)
     {
+        if ($complaint->photo && Storage::disk('public')->exists($complaint->photo)) {
+            Storage::disk('public')->delete($complaint->photo);
+        }
+
         $complaint->delete();
+
         return redirect()->route('complaints.index')->with('success', 'Complaint deleted successfully.');
     }
 }
