@@ -202,11 +202,6 @@
                             href="{{ route('complaints.create') }}">Pengaduan</a>
                     </li>
                 </ul>
-                {{-- <div class="ms-lg-3 mt-3 mt-lg-0">
-                    <a href="{{ route('login') }}" class="btn btn-outline-light">
-                        <i class="bi bi-person-fill-gear me-1"></i> Admin
-                    </a>
-                </div> --}}
             </div>
         </div>
     </nav>

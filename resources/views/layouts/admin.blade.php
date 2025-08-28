@@ -325,26 +325,39 @@
                 <i class="bi bi-list"></i>
             </button>
 
-            <div class="user-dropdown">
-                <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                    <div class="user-avatar">
+            <div class="user-dropdown dropdown ms-auto">
+                <button class="btn d-flex align-items-center border-0 bg-transparent dropdown-toggle" type="button"
+                    id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <!-- Avatar -->
+                    <div class="user-avatar bg-success text-white rounded-circle d-flex justify-content-center align-items-center me-2"
+                        style="width: 36px; height: 36px; font-size: 0.9rem;">
                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                     </div>
-                    <div class="d-none d-md-block">
+
+                    <!-- Info User -->
+                    <div class="d-none d-md-block text-start">
                         <div class="fw-semibold">{{ Auth::user()->name }}</div>
                         <small class="text-muted">{{ ucfirst(Auth::user()->role) }}</small>
                     </div>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i> Profile</a></li>
+
+                <!-- Dropdown Menu -->
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="bi bi-person me-2"></i> Profile
+                        </a>
+                    </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="m-0">
                             @csrf
-                            <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right me-2"></i>
-                                Logout</button>
+                            <button type="submit" class="dropdown-item">
+                                <i class="bi bi-box-arrow-right me-2"></i> Logout
+                            </button>
                         </form>
                     </li>
                 </ul>

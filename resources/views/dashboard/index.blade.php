@@ -64,7 +64,10 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">Pengaduan Terbaru</h5>
-                <a href="{{ route('complaints.index') }}" class="btn btn-sm btn-success">Lihat Semua</a>
+                <a href="{{ route('complaints.index') }}"
+                    class="btn btn-outline-success btn-sm d-flex align-items-center px-3">
+                    <i class="bi bi-list me-1"></i> Lihat Semua
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -85,16 +88,20 @@
                                     <td>{{ $complaint->id }}</td>
                                     <td>{{ $complaint->name }}</td>
                                     <td>
-                                        <span class="badge bg-success">{{ $complaint->category->name }}</span>
+                                        <span class="badge rounded-pill bg-success px-3 py-2 text-white text-capitalize">
+                                            <i class="bi bi-folder-fill me-1"></i> {{ $complaint->category->name }}
+                                        </span>
                                     </td>
                                     <td>{{ Str::limit($complaint->location, 30) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($complaint->date)->format('d M Y') }}</td>
                                     <td>
                                         <a href="{{ route('complaints.show', $complaint->id) }}"
-                                            class="btn btn-sm btn-info">
-                                            <i class="bi bi-eye"></i>
+                                            class="btn btn-outline-info btn-sm d-inline-flex align-items-center px-3"
+                                            title="Lihat">
+                                            <i class="bi bi-eye me-1"></i> Lihat
                                         </a>
                                     </td>
+
                                 </tr>
                             @empty
                                 <tr>

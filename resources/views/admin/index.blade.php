@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-success">Manajemen Admin</h2>
-            <a href="{{ route('admins.create') }}" class="btn btn-success">
+            <a href="{{ route('admins.create') }}" class="btn btn-outline-success btn-sm d-flex align-items-center px-3">
                 <i class="bi bi-plus-circle me-2"></i>Buat Akun
             </a>
         </div>
@@ -38,24 +38,28 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <div class="user-avatar me-3"
-                                                style="width: 35px; height: 35px; font-size: 0.8rem;">
-                                                {{ strtoupper(substr($admin->name, 0, 1)) }}
+                                            <div class="rounded-circle bg-light border d-flex justify-content-center align-items-center me-2"
+                                                style="width: 35px; height: 35px;">
+                                                <i class="bi bi-person text-secondary fs-6"></i>
                                             </div>
                                             <div>
-                                                {{ $admin->name }}
+                                                <span class="fw-semibold text-dark">{{ $admin->name }}</span>
                                                 @if ($admin->id === auth()->id())
-                                                    <span class="badge bg-info ms-2">Anda</span>
+                                                    <span class="badge bg-danger-subtle text-danger border ms-2">Anda</span>
                                                 @endif
                                             </div>
                                         </div>
                                     </td>
                                     <td>{{ $admin->email }}</td>
-                                    <td><span class="badge bg-danger">Super Admin</span></td>
                                     <td>
-                                        <a href="{{ route('admins.edit', $admin) }}" class="btn btn-sm btn-primary"
-                                            title="Edit">
-                                            <i class="bi bi-pencil"></i>
+                                        <span class="badge rounded-pill bg-danger-subtle text-danger border">
+                                            <i class="bi bi-shield-lock-fill me-1"></i> Super Admin
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admins.edit', $admin) }}"
+                                            class="btn btn-outline-warning btn-sm px-3 py-1" title="Edit">
+                                            <i class="bi bi-pencil"></i> Edit
                                         </a>
                                     </td>
                                 </tr>
@@ -66,34 +70,41 @@
                                     <td>{{ $counter++ }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <div class="user-avatar me-3"
-                                                style="width: 35px; height: 35px; font-size: 0.8rem;">
+                                            <div class="rounded-circle bg-light border d-flex justify-content-center align-items-center me-2"
+                                                style="width: 35px; height: 35px;">
                                                 {{ strtoupper(substr($admin->name, 0, 1)) }}
                                             </div>
                                             <div>
-                                                {{ $admin->name }}
+                                                <span class="fw-semibold">{{ $admin->name }}</span>
                                                 @if ($admin->id === auth()->id())
-                                                    <span class="badge bg-info ms-2">Anda</span>
+                                                    <span
+                                                        class="badge bg-light border border-info text-info ms-2">Anda</span>
                                                 @endif
                                             </div>
                                         </div>
                                     </td>
                                     <td>{{ $admin->email }}</td>
-                                    <td><span class="badge bg-success">Admin</span></td>
                                     <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="{{ route('admins.edit', $admin) }}" class="btn btn-sm btn-primary"
-                                                title="Edit">
-                                                <i class="bi bi-pencil"></i>
+                                        <span class="badge rounded-pill bg-success-subtle text-success border">
+                                            <i class="bi bi-person-badge-fill me-1"></i> Admin
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ route('admins.edit', $admin) }}"
+                                                class="btn btn-sm btn-outline-warning px-3 py-1" title="Edit">
+                                                <i class="bi bi-pencil"></i> Edit
                                             </a>
+
                                             @if ($admin->id !== auth()->id())
                                                 <form action="{{ route('admins.destroy', $admin) }}" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" title="Hapus"
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger px-3 py-1"
+                                                        title="Hapus"
                                                         onclick="return confirm('Yakin ingin menghapus akun ini?')">
-                                                        <i class="bi bi-trash"></i>
+                                                        <i class="bi bi-trash"></i> Hapus
                                                     </button>
                                                 </form>
                                             @endif

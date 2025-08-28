@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-success">Daftar Pengaduan</h2>
-            <a href="{{ route('complaints.create') }}" class="btn btn-success">
+            <a href="{{ route('complaints.create') }}" class="btn btn-outline-success btn-sm d-flex align-items-center px-3">
                 <i class="bi bi-plus-circle me-2"></i>Tambah Pengaduan
             </a>
         </div>
@@ -40,27 +40,35 @@
                                     <td>{{ $complaint->name }}</td>
                                     <td>{{ $complaint->national_id }}</td>
                                     <td>
-                                        <span class="badge bg-success">{{ $complaint->category->name }}</span>
+                                        <span class="badge rounded-pill bg-success px-3 py-2 text-white text-capitalize">
+                                            <i class="bi bi-folder-fill me-1"></i> {{ $complaint->category->name }}
+                                        </span>
                                     </td>
                                     <td>{{ Str::limit($complaint->location, 20) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($complaint->date)->format('d M Y') }}</td>
                                     <td>
-                                        <div class="btn-group" role="group">
+                                        <div class="d-flex gap-2">
                                             <a href="{{ route('complaints.show', $complaint->id) }}"
-                                                class="btn btn-sm btn-info" title="Lihat">
-                                                <i class="bi bi-eye"></i>
+                                                class="btn btn-outline-info btn-sm d-flex align-items-center px-3"
+                                                title="Lihat">
+                                                <i class="bi bi-eye me-1"></i> Lihat
                                             </a>
+
                                             <a href="{{ route('complaints.edit', $complaint->id) }}"
-                                                class="btn btn-sm btn-warning" title="Edit">
-                                                <i class="bi bi-pencil"></i>
+                                                class="btn btn-outline-warning btn-sm d-flex align-items-center px-3"
+                                                title="Edit">
+                                                <i class="bi bi-pencil me-1"></i> Edit
                                             </a>
+
                                             <form action="{{ route('complaints.destroy', $complaint->id) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus"
-                                                    onclick="return confirm('Yakin ingin menghapus?')">
-                                                    <i class="bi bi-trash"></i>
+                                                <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm d-flex align-items-center px-3"
+                                                    title="Hapus"
+                                                    onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                    <i class="bi bi-trash me-1"></i> Hapus
                                                 </button>
                                             </form>
                                         </div>

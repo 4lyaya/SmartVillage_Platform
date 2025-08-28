@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-success">Manajemen Kategori</h2>
-            <a href="{{ route('categories.create') }}" class="btn btn-success">
+            <a href="{{ route('categories.create') }}" class="btn btn-outline-success btn-sm d-flex align-items-center px-3">
                 <i class="bi bi-plus-circle me-2"></i>Tambah Kategori
             </a>
         </div>
@@ -32,23 +32,29 @@
                         <tbody>
                             @forelse($categories as $category)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <span class="badge bg-success fs-6">{{ $category->name }}</span>
+                                        <span class="badge rounded-pill bg-success-subtle text-success border px-3 py-2">
+                                            <i class="bi bi-tags-fill me-1"></i> {{ $category->name }}
+                                        </span>
                                     </td>
                                     <td>
-                                        <div class="btn-group" role="group">
+                                        <div class="d-flex gap-2">
                                             <a href="{{ route('categories.edit', $category) }}"
-                                                class="btn btn-sm btn-warning" title="Edit">
-                                                <i class="bi bi-pencil"></i>
+                                                class="btn btn-outline-warning btn-sm d-flex align-items-center px-3"
+                                                title="Edit">
+                                                <i class="bi bi-pencil me-1"></i> Edit
                                             </a>
+
                                             <form action="{{ route('categories.destroy', $category) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus"
+                                                <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm d-flex align-items-center px-3"
+                                                    title="Hapus"
                                                     onclick="return confirm('Yakin ingin menghapus kategori?')">
-                                                    <i class="bi bi-trash"></i>
+                                                    <i class="bi bi-trash me-1"></i> Hapus
                                                 </button>
                                             </form>
                                         </div>

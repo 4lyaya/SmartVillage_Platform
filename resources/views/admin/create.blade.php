@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-success">Buat Akun Admin</h2>
-            <a href="{{ route('admins.index') }}" class="btn btn-secondary">
+            {{-- <a href="{{ route('admins.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left me-2"></i>Kembali
-            </a>
+            </a> --}}
         </div>
 
         <div class="card">
@@ -69,11 +69,12 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-success">
-                            <i class="bi bi-plus-circle me-2"></i>Buat Akun
+                        <button type="submit" class="btn btn-outline-success d-flex align-items-center px-3 rounded shadow-sm">
+                            <i class="bi bi-plus-circle me-2"></i> Buat Akun
                         </button>
-                        <a href="{{ route('admins.index') }}" class="btn btn-secondary">
-                            <i class="bi bi-x-circle me-2"></i>Batal
+                        <a href="{{ route('admins.index') }}"
+                            class="btn btn-outline-danger d-flex align-items-center px-3 rounded shadow-sm">
+                            <i class="bi bi-x-circle me-2"></i> Batal
                         </a>
                     </div>
                 </form>
